@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace JvInCs
 {
+    [TestFixture]
     public class Tests
     {
 
