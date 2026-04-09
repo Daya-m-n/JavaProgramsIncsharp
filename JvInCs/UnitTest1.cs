@@ -1,9 +1,11 @@
 using NUnit.Framework;
+using NUnit.Framework.Internal.Execution;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace JvInCs
 {
@@ -215,6 +217,7 @@ namespace JvInCs
         [Test]
         public void NumberPolindrome()
         {
+            //If you reverse the digits of a number and it remains unchanged, then it is a palindrome.
             int num = 123321;
             int temp = num;
             int rev = 0;
@@ -238,6 +241,12 @@ namespace JvInCs
         [Test]
         public void NumberPrimeNum()
         {
+            //If a number is divisible only by 1 and itself, it's a prime number.
+            //💡 Important Points:
+            //2 is the only even prime number
+            //Numbers less than 2(0 and 1) are not prime
+            //Prime numbers are always greater than 1
+
             int num = 18;
             int i = 2;
             while (i < num)
@@ -286,6 +295,8 @@ namespace JvInCs
         [Test]
         public void NumberFebonacciSeries()
         {
+            //The Fibonacci series is a sequence of numbers where each number is the sum of the previous two numbers.
+
             int i = 0;
             int j = 1;
             Console.Write(i + " ");
