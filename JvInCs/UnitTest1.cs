@@ -757,13 +757,13 @@ namespace JvInCs
         [Test]
         public void ArraySeparationOfSameNumber()
         {
-            int[] a = { 2, 4, 0, 0, 8, 0, 5, 0 };
+            int[] a = { 2, 4, 1, 1, 8, 1, 5, 1 };
             int[] b = new int[a.Length];
             int n = a.Length - 1;
             int m = 0;
             for (int i = 0; i < a.Length; i++)
             {
-                if (a[i] == 0)
+                if (a[i] == 1)
                 {
                     b[n] = a[i];
                     n--;
