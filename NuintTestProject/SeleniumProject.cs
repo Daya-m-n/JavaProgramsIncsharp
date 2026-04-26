@@ -101,7 +101,8 @@ namespace NuintTestProject
         [Test]
         public void AddMobilesToCart()
         {
-            string[] mobiles = { "iphone X" , "Blackberry" };
+            string[] expectedMobiles = { "iphone X" , "Blackberry" };
+            string[] actualMobiles = new string[2];
             driver.FindElement(By.Id("username")).SendKeys("rahulshettyacademy");
             driver.FindElement(By.Name("password")).SendKeys("Learning@830$3mK2");
             //checkbox
@@ -116,12 +117,27 @@ namespace NuintTestProject
 
             foreach(IWebElement element in mobileList)
             {
-               if(mobiles.Contains(element.FindElement(By.CssSelector(".card-title a")).Text)){
+               if(expectedMobiles.Contains(element.FindElement(By.CssSelector(".card-title a")).Text)){
                     element.FindElement(By.CssSelector(".card-footer button")).Click();
                 }
             }
 
             driver.FindElement(By.PartialLinkText("Checkout")).Click();
+            IList<IWebElement> mobiles=driver.FindElements(By.CssSelector("h4 a"));
+            for (int i = 0; i < mobiles.Count; i++)
+            {
+                actualMobiles[i] = mobiles[i].Text;
+            }
+            Assert.That(actualMobiles, Is.EqualTo(expectedMobiles));
+
+            driver.FindElement(By.XPath("//button[contains(text(),'Checkout ')]")).Click();
+            driver.FindElement(By.Id("country")).SendKeys("Ind");
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.LinkText("India")));
+            driver.FindElement(By.LinkText("India")).Click();
+            driver.FindElement(By.XPath("//label[@for='checkbox2']")).Click();
+            driver.FindElement(By.XPath("//input[@type='submit']")).Click();
+            string actualText=driver.FindElement(By.XPath("//div[contains(@class,'alert-success')]")).Text;
+            StringAssert.Contains("Success", actualText,"Text is not matching");
             Thread.Sleep(1500);
         }
 
